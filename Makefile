@@ -1,10 +1,7 @@
 .PHONY: watch
 
-resume.pdf: resume.tex resume.aux
-	pdflatex resume.tex
-
-resume.aux: resume.tex
-	pdflatex resume.tex
+resume.pdf: resume.tex
+	latexmk $<
 
 watch:
 	echo 'resume.tex' | entr make
