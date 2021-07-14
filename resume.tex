@@ -2,8 +2,11 @@
 
 \moderncvstyle{casual}
 \moderncvcolor{orange}
+\renewcommand*{\namefont}{\fontsize{32}{36}\mdseries\upshape}
 
-\usepackage[scale=0.75]{geometry}
+\usepackage[scale=0.85]{geometry}
+
+\usepackage{cvhead}
 
 \name{Jacob}{Mischka}
 \address{1847 N Prospect Ave, Apt 10}{Milwaukee, WI 53202}{}
@@ -18,8 +21,8 @@
 \makecvtitle
 
 \section{Skills}
-\cvlistitem{Experienced in JavaScript, HTML, CSS, Python, PHP, Rust, and Unix tools}
-\cvlistitem{Able to create fully functioning products indedpendently}
+\cvlistitem{Experienced in JavaScript, HTML, CSS, Rust, Python, PHP, and Unix tools}
+\cvlistitem{Able to create fully functioning products independently}
 
 \section{Achievements and highlighted projects}
 \cventry{Present}{Open Source}{\href{https://github.com/jacobmischka}{GitHub}}{\href{https://github.com/jacobmischka}{jacobmischka}}{}{%
@@ -30,6 +33,11 @@
     with around 30,000 weekly downloads each.
     Published several additional projects as MCW Anesthesiology
     (\href{https://github.com/mcw-anesthesiology}{GitHub: mcw-anesthesiology}).
+}
+\cventry{2020}{Mechanizing WebAssembly Proposals}{University of Wisconsin-Milwaukee}{}{}{%
+    My Master's thesis. Augmented an existing mechanized Isabelle proof of
+    WebAssembly soundness to include new language features added since the
+    mechanization's publication.
 }
 \cventry{2014}{Version-Aware Word Documents}{University of Wisconsin-Whitewater}{}{}{%
     Designed modification to Microsoft Word files to track version changes and tool to merge revisions.
@@ -42,16 +50,17 @@
 	\item Develop tools to process, manipulate, and display data in meaningful ways
 	    \begin{itemize}%
 		\item Rust-powered GraphQL server powering data retrieval and analysis
-		\item Web interfaces using Svelte, Vue, and React
+		\item WebAssembly-powered client-side case browser and analysis tool
+		\item Web interfaces using Svelte and React
 		\item Offline individualized analysis and plotting using Python and Matplotlib
 	    \end{itemize}
 	\item Develop, update, and maintain internal departmental web applications%
 	    \begin{itemize}%
 		\item Trainee and faculty evaluation system (PHP, Vue)
-		\item Trainee day-off management system (JavaScript/Node, Meteor)
+		\item Trainee day-off management system (Rust, JavaScript, React)
 		\item Academic calendar merger and frontend (JavaScript/Node, React)
 		\item Lecture attendance tracking application (PHP, React, GraphQL)
-		\item Department directory (JavaScript/Svelte frontend, Python and GraphQL backend)
+		\item Department directory (JavaScript, Svelte, Python, GraphQL)
 	    \end{itemize}
 	\item Manage department websites%
 	    \begin{itemize}%
@@ -66,7 +75,7 @@
 \end{itemize}}
 
 \section{Education}
-\cventry{2017--2020}{Master of Science}{University of Wisconsin - Milwaukee}{Milwaukee, WI}{}{Program: Computer Science\\GPA: 4.0}
-\cventry{2011--2015}{Bachelor of Business Administration}{University of Wisconsin - Whitewater}{Whitewater, WI}{}{Major: Management in Computer Systems\\GPA: 3.821}
+\cventry{2017--2020}{Master of Science}{University of Wisconsin-Milwaukee}{Milwaukee, WI}{}{Program: Computer Science\\GPA: 4.0}
+\cventry{2011--2015}{Bachelor of Business Administration}{University of Wisconsin-Whitewater}{Whitewater, WI}{}{Major: Management in Computer Systems\\GPA: 3.821}
 
 \end{document}

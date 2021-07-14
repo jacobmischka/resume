@@ -1,0 +1,72 @@
+% Customizations to moderncvheadii.sty
+
+\makeatletter
+\renewcommand*{\makecvhead}{% TODO: use \@initializecommand, which requires modifying its definition to handle \par
+  % recompute lengths (in case we are switching from letter to resume, or vice versa)
+  \recomputecvlengths%
+  % optional picture (pre-rendering)
+  \@initializebox{\makecvheadpicturebox}%
+  \savebox{\makecvheadpicturebox}{%
+    \ifthenelse{\isundefined{\@photo}}%
+      {}%
+      {%
+       \setlength\fboxrule{\@photoframewidth}%
+       \ifdim\@photoframewidth=0pt%
+         \setlength{\fboxsep}{0pt}\fi%
+       {\color{color1}\framebox{\includegraphics[width=\@photowidth]{\@photo}}}}}%
+  % name (pre-rendering)
+  \@initializelength{\makecvheadpicturewidth}%
+  \settowidth{\makecvheadpicturewidth}{\usebox{\makecvheadpicturebox}}%
+  \@initializebox{\makecvheadnamebox}%
+  \savebox{\makecvheadnamebox}{%
+    \parbox[b]{\textwidth-\makecvheadpicturewidth}{%
+      \if@left\raggedright\fi%
+      \if@right\raggedleft\fi%
+      \namefont%
+      \if@alternate% alternate design: first- and lastname in lowercase with no space in between (distinction is made by color difference)
+        {\color{color2!50}\MakeLowercase\@firstname}{\color{color2}\MakeLowercase\@lastname}%
+      \else% default design: first- and lastname as given with a space in between
+        {\color{color2!50}\@firstname} {\color{color2}\@lastname}\fi}}%
+  % rendering
+  \if@left%
+    \usebox{\makecvheadnamebox}%
+    \usebox{\makecvheadpicturebox}\fi
+  \if@right%
+    \usebox{\makecvheadpicturebox}%
+    \usebox{\makecvheadnamebox}\fi\\[-.35em]%
+  {\color{color2!50}\rule{\textwidth}{.25ex}}%
+  % optional detailed information
+  \if@details{%
+    \\\null%
+    \addressfont\color{color2}%
+    \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomakeheaddetails{\addresssymbol\@addressstreet}%
+      \ifthenelse{\equal{\@addresscity}{}}{}{\addtomakeheaddetails[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
+      \ifthenelse{\equal{\@addresscountry}{}}{}{\addtomakeheaddetails[~--~]{\@addresscountry}}%
+        \flushmakeheaddetails\@firstmakeheaddetailselementtrue\\\null}%
+    \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
+      \addtomakeheaddetails{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
+    \ifthenelse{\isundefined{\@email}}{}{\addtomakeheaddetails{\emailsymbol\emaillink{\@email}}}%
+    \ifthenelse{\isundefined{\@homepage}}{}{\addtomakeheaddetails{\homepagesymbol\httpslink{\@homepage}}}%
+    \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
+      \addtomakeheaddetails{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
+    \ifthenelse{\isundefined{\@extrainfo}}{}{\addtomakeheaddetails{\@extrainfo}}%
+    \flushmakeheaddetails}\fi% need to force a \par after this to avoid weird spacing bug at the first section if no blank line is left after \makehead
+  % optional title
+  \ifthenelse{\equal{\@title}{}}{}{%
+    \null% \null is required as there is no box on the line after \\, so glue such as \hfill (and leaders) disappear; this is in contrast to after \par, where the next line starts with an indent box (even after \noindent)
+    \if@right\hfill\fi%
+    \if@alternate%
+      \titlestyle{\MakeLowercase\@title}%
+    \else%
+      \titlestyle{\@title}\fi%
+    }\\%
+  % optional quote
+  \ifthenelse{\isundefined{\@quote}}%
+    {}%
+    {{\null\hfill%
+      \begin{minipage}{\quotewidth}%
+        \centering%
+        \quotestyle{\@quote}%
+      \end{minipage}\hfill\null\\}}%
+  \par}% to avoid weird spacing bug at the first section if no blank line is left after \maketitle
+\makeatother
