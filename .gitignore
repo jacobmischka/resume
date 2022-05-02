@@ -1,3 +1,5 @@
+dist/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -7,6 +9,7 @@
 *.out
 *.toc
 *.pdf
+*.xdv
 
 ## Intermediate documents:
 *.dvi

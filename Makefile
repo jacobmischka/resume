@@ -8,7 +8,7 @@ space := ${null} ${null}
 ${space} := ${space}
 
 resume.pdf: ${DEPS}
-	latexmk $<
+	latexmk -xelatex $<
 
 watch:
 	echo -e $(subst ${ },\\n,${DEPS}) | entr make
